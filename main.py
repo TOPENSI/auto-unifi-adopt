@@ -2,22 +2,23 @@ import threading
 from queue import Queue
 import paramiko
 url = ''
-which_command = input("Which mode? set-inform, info, or set-default [info]: ")
-if which_command == "set-inform":
-    url = input("Enter your set-inform URL [http://p01.hostifi.net:8080/inform]: ")
+which_command = input("Which mode? set-inform, info, or set-default [set-inform]: ")
+
+if which_command == "set-inform" or which_command == '':
+    url = input("Enter your set-inform URL [http://unifi.topensi.fr:58080/inform]: ")
 username_ = input("Enter device username [ubnt]: ")
 password_ = input("Enter device password [ubnt]: ")
-subnet_ = input("Enter subnet [192.168.1.0]: ")
+subnet_ = input("Enter subnet [10.0.1.0]: ")
 
 if url != '':
     url = url
 else:
-    url = "http://p01.hostifi.net:8080/inform"
+    url = "http://unifi.topensi.fr:58080/inform"
 
 if which_command != '':
     which_command = which_command
 else:
-    which_command = 'info'
+    which_command = 'set-inform'
 
 if username_ != '':
     USERNAME = username_
@@ -32,7 +33,7 @@ else:
 if subnet_ != '':
     SUBNET = subnet_
 else:
-    SUBNET = '192.168.1.0'
+    SUBNET = '10.0.1.0'
 
 SUBNET = SUBNET[:-1]
 PORT = 22
